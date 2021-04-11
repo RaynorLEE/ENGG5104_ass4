@@ -5,6 +5,7 @@ from torch.nn import init
 import math
 import numpy as np
 
+
 class FlowNetEncoder(nn.Module):
     def __init__(self, args, input_channels = 6, div_flow=20):
         super(FlowNetEncoder,self).__init__()
