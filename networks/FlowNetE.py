@@ -14,6 +14,28 @@ class FlowNetEncoder(nn.Module):
         self.div_flow = div_flow      # A coefficient to obtain small output value for easy training, ignore it
         '''Implement Codes here'''
         ''''''
+        self.conv1 = nn.Sequential(
+            nn.Conv2d(input_channels, 64, kernel_size=7, stride=2, padding=3),
+            nn.LeakyReLU()
+        )
+        self.conv2 = nn.Sequential(
+            nn.Conv2d(64, 128, kernel_size=5, stride=2, padding=2),
+            nn.LeakyReLU()
+        )
+        self.conv3 = nn.Sequential(
+            nn.Conv2d(128, 256, kernel_size=5, stride=2, padding=2),
+            nn.LeakyReLU()
+        )
+        self.conv4 = nn.Sequential(
+            nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            nn.LeakyReLU(),
+            nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1),
+            nn.LeakyReLU()
+        )
+        self.conv5 = nn.Sequential(
+            nn.Conv2d(512, 2, kernel_size=3, stride=1, padding=1),
+            nn.Upsample(scale_factor=16)
+        )
 
     def forward(self, inputs):
         ## input normalization
@@ -23,6 +45,11 @@ class FlowNetEncoder(nn.Module):
         ##
         '''Implement Codes here'''
         ''''''
+        x = self.conv1(x)
+        x = self.conv2(x)
+        x = self.conv3(x)
+        x = self.conv4(x)
+        flow4 = self.conv5(x)
 
         if self.training:
             return flow4
