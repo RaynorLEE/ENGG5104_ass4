@@ -11,3 +11,5 @@ python main.py \
     --inference_dataset MpiSintelClean \
     --inference_dataset_root data/validation \
     --resume work/FlowNetERM_model_best.pth.tar
+
+python3 main.py --inference --model FlowNetERM --loss=MultiscaleLoss --save_flow --inference_visualize --inference_dataset MpiSintelClean --inference_dataset_root data/validation --resume work/FlowNetERM_model_best.pth.tar

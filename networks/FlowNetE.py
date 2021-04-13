@@ -36,6 +36,28 @@ class FlowNetEncoder(nn.Module):
             nn.Conv2d(512, 2, kernel_size=3, stride=1, padding=1),
             nn.Upsample(scale_factor=16)
         )
+        # self.conv1 = nn.Sequential(
+        #     nn.Conv2d(input_channels, 64, kernel_size=3, stride=2, padding=1),
+        #     nn.LeakyReLU()
+        # )
+        # self.conv2 = nn.Sequential(
+        #     nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
+        #     nn.LeakyReLU()
+        # )
+        # self.conv3 = nn.Sequential(
+        #     nn.Conv2d(128, 256, kernel_size=3, stride=2, padding=1),
+        #     nn.LeakyReLU()
+        # )
+        # self.conv4 = nn.Sequential(
+        #     nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+        #     nn.LeakyReLU(),
+        #     nn.Conv2d(256, 256, kernel_size=3, stride=2, padding=1),
+        #     nn.LeakyReLU()
+        # )
+        # self.conv5 = nn.Sequential(
+        #     nn.Conv2d(256, 2, kernel_size=3, stride=1, padding=1),
+        #     nn.Upsample(scale_factor=16)
+        # )
 
     def forward(self, inputs):
         ## input normalization

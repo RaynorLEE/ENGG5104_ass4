@@ -31,7 +31,8 @@ class EPELoss(nn.Module):
         # print(ref)
         # ''''''
         # return [epevalue]
-        return torch.norm(target - output, p=2, dim=1)
+        epevalue = torch.norm(target - output, p=2, dim=1).mean()
+        return [epevalue]
 
 
 class MultiscaleLoss(nn.Module):
@@ -42,6 +43,9 @@ class MultiscaleLoss(nn.Module):
         self.div_flow = 0.05
         self.loss_labels = ['Multiscale'],
         ''' Implement the MultiScale loss here'''
+        #   Reference: https://arxiv.org/pdf/1709.02371.pdf
+        #   self.loss_weights = torch.FloatTensor([0.32, 0.04, 0.01], device=)
+        self.loss_weights = tuple([0.32, 0.16, 0.08])
         ''''''
 
     def forward(self, output, target):
@@ -52,5 +56,6 @@ class MultiscaleLoss(nn.Module):
             target_ = F.interpolate(target, output_.shape[2:], mode='bilinear', align_corners=False)
             assert output_.shape == target_.shape, (output_.shape, target_.shape)
             ''' Implement the MultiScale loss here'''
+            epevalue += self.loss_weights[i] * torch.norm(target_ - output_, p=2, dim=1).mean()
             ''''''
         return [epevalue]
