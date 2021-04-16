@@ -1,4 +1,3 @@
-from spatial_correlation_sampler import SpatialCorrelationSampler
 import torch
 import torch.nn as nn
 from torch.nn import init
