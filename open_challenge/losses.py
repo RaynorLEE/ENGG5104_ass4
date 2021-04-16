@@ -11,7 +11,7 @@ class OursLoss(nn.Module):
         self.loss_labels = ['Ours'],
         ''' Implement the MultiScale loss here'''
         #   Reference: https://arxiv.org/pdf/1709.02371.pdf
-        self.loss_weights = tuple([0.32, 0.16, 0.08])
+        self.loss_weights = tuple([0.32, 0.16, 0.08, 0.04])
 
     def forward(self, output, target):
         # epevalue = 0

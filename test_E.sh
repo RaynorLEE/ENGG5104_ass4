@@ -10,3 +10,5 @@ python main.py \
     --inference_dataset MpiSintelClean \
     --inference_dataset_root data/validation \
     --resume work/FlowNetE_model_best.pth.tar
+
+python3 main.py --inference --model FlowNetE --save_flow --inference_visualize --inference_dataset MpiSintelClean --inference_dataset_root data/validation --resume work/FlowNetE_model_best.pth.tar
