@@ -26,11 +26,11 @@ class TimerBlock:
         print(("{}".format(title)))
 
     def __enter__(self):
-        self.start = time.clock()
+        self.start = time.time()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.end = time.clock()
+        self.end = time.time()
         self.interval = self.end - self.start
 
         if exc_type is not None:
@@ -40,7 +40,7 @@ class TimerBlock:
 
 
     def log(self, string):
-        duration = time.clock() - self.start
+        duration = time.time() - self.start
         units = 's'
         if duration > 60:
             duration = duration / 60.

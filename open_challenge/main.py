@@ -33,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--schedule_lr_fraction', type=float, default=10)
     parser.add_argument("--rgb_max", type=float, default = 255.)
 
-    parser.add_argument('--number_workers', '-nw', '--num_workers', type=int, default=8)
+    parser.add_argument('--number_workers', '-nw', '--num_workers', type=int, default=2)
     parser.add_argument('--number_gpus', '-ng', type=int, default=-1, help='number of GPUs to use')
     parser.add_argument('--no_cuda', action='store_true')
 
